@@ -1,0 +1,19 @@
+<h1><%= @article.title %></h1>
+<p><%= @article.body %></p>
+
+<%= link_to "EDIT", edit_article_path(@article) %>
+<%= link_to "DELETE", article_path(@article), data: {
+  turbo_method: :delete,
+  turbo_confirm: "Are you sure?"
+}%>
+<%= link_to "Go Back", "/" %>
+
+<h2>Comments</h2>
+
+<% @article.comments.each do |comment| %>
+  <%= render "comments/comment", comment: comment %>
+<% end %>
+
+<h2>Add a comment:</h2>
+
+<%= render "comments/form" %>
